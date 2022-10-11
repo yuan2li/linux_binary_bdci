@@ -87,3 +87,10 @@ python pre_sim.py  /data/bin_data test.feature.json
 - 模型训练过程进行了训练集、验证集、测试集8：1：1的划分，但经过GNN初始化和第1个epoch之后，内存占用就已超过130G。因此当前方案使用仅经过1个epoch之后保存的模型，耗时约50分钟。(train.py)
 
 - 对测试集进行相似性匹配的过程中，要对10000个目标函数各自进行10000个候选函数的匹配（CFG构建及向量嵌入），也就是同样的操作要进行10^8次。当前方案试图对已计算的嵌入向量进行保存(train.py: 148)，并通过对测试集函数记录进行分割（test.question.{0-7}.csv）来使用8个GPU并行计算并分别保存结果(submission.{0-7}.*.csv)，仍需耗时约7小时。(application/similarity.py)
+
+
+### 参考资料
+
+- [Neural Network-based Graph Embedding for Cross-Platform Binary Code Similarity Detection (CCS 2017, CCF A)](https://x-16xb.github.io/2020/01/10/Neural-Network-based-Graph-Embedding-for-Cross-Platform/)
+- [Code - DNN Binary Code Similarity Detection](https://github.com/xiaojunxu/dnn-binary-code-similarity)
+- [Code - ACFG Extraction and Similarity Calculation](https://github.com/shouguoyang/Gemini)
