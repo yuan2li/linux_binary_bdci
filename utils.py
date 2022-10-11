@@ -3,18 +3,6 @@ from sklearn.metrics import auc, roc_curve
 import json
 import os
 import csv
-import multiprocessing as mp
-
-
-def run(func):
-    """ Perform the task using multiple cores. """
-
-    def run_in_multiprocess(*args, **kwargs):
-        for i in range(mp.cpu_count() // 2):
-            _kwargs = {'fids': (i, kwargs['fids'][i])}
-            p = mp.Process(target=func, args=args, kwargs=_kwargs)
-            p.start()
-    return run_in_multiprocess
 
 def get_f_dict(F_PATH):
     name_dict = {}
